@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
 from app.database import engine,Base
+from app.models import user, role, permission
+
 
 app = FastAPI()
 
