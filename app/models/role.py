@@ -2,6 +2,7 @@ from sqlalchemy import Column, Integer, String, Table, ForeignKey
 from sqlalchemy.orm import relationship
 from app.database import Base
 
+# Bridge table for Role and Permission
 role_permissions = Table(
     "role_permissions",
     Base.metadata,
@@ -9,11 +10,10 @@ role_permissions = Table(
     Column("permission_id", ForeignKey("permissions.id"), primary_key=True),
 )
 
+# Role model
 class Role(Base):
     __tablename__ = "roles"
     id = Column(Integer, primary_key=True)
     name = Column(String(30), unique=True, nullable=False)
 
-    users = relationship("User", secondary="user_roles")
-
-    permissions = relationship("Permission", secondary="role_permissions")
+    permissions = relationship("Permission", secondary=role_permissions)

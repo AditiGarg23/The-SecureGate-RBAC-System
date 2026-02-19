@@ -3,7 +3,6 @@ from sqlalchemy.orm import relationship
 from app.database import Base
 
 # Bridge table for User and Role
-
 user_roles = Table(
     "user_roles",
     Base.metadata,
@@ -11,7 +10,7 @@ user_roles = Table(
     Column("role_id", ForeignKey("roles.id"), primary_key=True),
 )
 
-
+# User model
 class User(Base):
     __tablename__ = "users"
 
@@ -19,4 +18,4 @@ class User(Base):
     username = Column(String(30), unique=True, nullable=False)
     password = Column(String, nullable=False)
 
-    roles = relationship("Role", secondary="user_roles")
+    roles = relationship("Role", secondary=user_roles)
