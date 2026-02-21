@@ -11,3 +11,8 @@ class UserLoginRequest(BaseModel):
 class TokenResponse(BaseModel):
     access_token: str
     token_type: str
+
+class UserProfileRequest(BaseModel):
+    username: str
+    roles: list[str]
+    permissions: list[str]

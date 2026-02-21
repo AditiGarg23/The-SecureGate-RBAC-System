@@ -1,13 +1,9 @@
 from fastapi import APIRouter, Depends, status
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
-from app.schemas.user_schema import (
-    UserRegisterRequest,
-    UserLoginRequest,
-    TokenResponse
-)
+from app.schemas.user_schema import UserRegisterRequest
 from app.services.auth_service import register_user_service, login_user_service
-
+from app.auth.authorization import get_user_permissions
 from app.auth.dependencies import (
     get_db_session,
     get_current_user
@@ -43,7 +39,20 @@ def login_user(
 
 # Protected endpoint to test authentication
 @router.get("/me")
-def get_profile(
+def get_profile( 
     current_user = Depends(get_current_user)
 ):
-    return {"username": current_user.username}
+    user_permission = get_user_permissions(current_user)
+
+    return {
+        "username": current_user.username,
+        "roles": [role.name for role in current_user.roles],
+        "permissions": list(user_permission)
+        # "permissions": [
+        #     # permission.name
+        #     # for role in current_user.roles
+        #     # for permission in role.permissions
+
+        # ]
+
+        }
