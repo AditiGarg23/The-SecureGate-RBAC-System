@@ -87,6 +87,6 @@ Open SQLite Viewer and upload the database file there to view the database.
 | Username | Password  | Role   | Permissions |
 |---------:|-----------|--------|-------------|
 | admin    | admin123  | Admin  | READ_DATA, ASSIGN_ROLE, DELETE_DATA |
-| alice    | alice123  | viewer | READ_DATA |
+| abc      | abc123    | User   | READ_DATA   |
 
 ---
