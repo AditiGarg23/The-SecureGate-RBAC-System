@@ -7,7 +7,8 @@ from app.auth.hashing import hash_password
 
 def seed_data():
     db: Session = SessionLocal()
-
+    
+    # For Admin Role
     admin_role = db.query(Role).filter(Role.name == "Admin").first()
 
     if not admin_role:
@@ -27,7 +28,7 @@ def seed_data():
         db.add_all([admin_role, user_role])
         db.commit()
 
-        # Assign permissions to roles(Admin gets all, User gets read only)
+        # Assign permissions to admin roles(Admin gets all, User gets read only)
         admin_role.permissions.append(read_permission)
         admin_role.permissions.append(assign_permission)
         admin_role.permissions.append(delete_permission)
@@ -37,6 +38,7 @@ def seed_data():
 
         db.commit()
 
+    # For Admin User
     admin_user = db.query(User).filter(User.username == "admin").first()
 
     if not admin_user:

@@ -13,6 +13,8 @@ This project includes:
   - Loads the user's effective permissions (via roles)
   - Denies unauthorized requests with correct status codes
 
+---
+
 ## Features
 
 - User registration and login with JWT authentication
@@ -21,6 +23,8 @@ This project includes:
 - Custom authorization middleware that checks permissions on protected routes
 - Auto-seeded database with default roles (Admin, User) and permissions (READ_DATA, DELETE_DATA,    ASSIGN_ROLE)
 - Interactive API docs via FastAPI's built-in Swagger UI at /docs
+
+---
 
 ## Data Model
 
@@ -31,6 +35,8 @@ SQLite tables:
 - `permissions`
 - `user_roles` (join table)
 - `role_permissions` (join table)
+
+---
 
 ## Setup & Installation
 
@@ -73,3 +79,14 @@ Open "URL"/docs for the interactive Swagger UI.
 ### 8) Explore the Database
 
 Open SQLite Viewer and upload the database file there to view the database.
+
+---
+
+## Demo Users (Seeded)
+
+| Username | Password  | Role   | Permissions |
+|---------:|-----------|--------|-------------|
+| admin    | admin123  | Admin  | READ_DATA, ASSIGN_ROLE, DELETE_DATA |
+| alice    | alice123  | viewer | READ_DATA |
+
+---

@@ -5,7 +5,7 @@ from app.repositories.user_repo import get_user_by_username, create_user
 from app.auth.hashing import verify_password, hash_password
 from app.auth.jwt_handler import create_access_token
 
-#Service function for user registration
+# Service function for user registration
 def register_user_service(database_session: Session, username:str, password: str):
     existing_user = get_user_by_username(database_session, username)
     if existing_user:
@@ -26,7 +26,7 @@ def register_user_service(database_session: Session, username:str, password: str
             detail="Default User role not found"
         )
 
-    # 🔥 Assign role
+    # Assign role
     new_user.roles.append(user_role)
 
     database_session.commit()
